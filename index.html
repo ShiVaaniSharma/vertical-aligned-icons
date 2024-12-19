@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blink Effect on Logo</title>
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="main">
+        <div id="nav-bar">
+            <div id="logo" class="hero">
+                    <h1 class="logo"><span id="sh">Sh</span><span>i</span><span id="b">v</span><span>a</span><span id="s">ni</span></h1>
+            </div>
+        </div>
+    
+        <div class="social-menu">
+            <ul class="nav">
+                <li>
+                    <a> <i class="fa-brands fa-facebook-f"></i> </a>
+                </li>
+                <li>
+                    <a> <i class="fa-brands fa-instagram"></i> </a>
+                </li>
+                <li>
+                    <a> <i class="fa-brands fa-linkedin-in"></i> </a>
+                </li>
+                <li>
+                    <a> <i class="fa-brands fa-twitter"></i> </a>
+                </li>
+            </ul>
+            </div>
+    </div>
+
+    <section id="section1">
+
+    </section>
+    <script>
+        // Select the logo's text
+        let logoText = document.querySelectorAll(".logo span, .logo #b, .logo #s");
+
+        // Loop through each letter and split them into spans for the animation
+        logoText.forEach(letter => {
+            let content = letter.textContent.split("");  // Split the text into individual characters
+            letter.textContent = "";  // Clear original text
+
+            content.forEach((char, i) => {
+                let span = document.createElement("span");
+                let delay = (i + 1) * 0.1;  // Create staggered delay for each letter
+
+                // Create the "out" span
+                let letterOut = document.createElement("span");
+                letterOut.textContent = char;
+                letterOut.style.transitionDelay = `${delay}s`;
+                letterOut.classList.add("out");
+                span.append(letterOut);
+
+                // Create the "in" span
+                let letterIn = document.createElement("span");
+                letterIn.textContent = char;
+                letterIn.style.transitionDelay = `${delay}s`;
+                letterIn.classList.add("in");
+                span.append(letterIn);
+
+                letter.appendChild(span);  // Append the newly created span
+            });
+        });
+
+        // Add hover event to animate the text
+        let logo = document.querySelector(".logo");
+        logo.addEventListener("mouseenter", () => {
+            document.querySelectorAll(".logo span").forEach(span => {
+                span.style.transition = '0.6s';
+            });
+        });
+    </script>
+</body>
+</html>
